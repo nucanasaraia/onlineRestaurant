@@ -1,0 +1,52 @@
+<section>
+  <div class="image-container">
+    <img src="https://casasensei.com/wp-content/uploads/2019/07/Asian-Food-1.jpg" alt="Asian Food">
+    <div class="text-overlay">Your Cart Page</div>
+  </div>
+</section>
+
+<section><div class="cate">
+  Cart
+</div></section>
+
+<table class="table">
+    <thead>
+      <tr>
+        <th colspan="2" scope="col">Product</th>
+        <th scope="col">Quantity</th>
+        <th scope="col">Price</th>
+        <th scope="col">Total</th>
+        <th scope="col">Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of cartList">
+        <td data-label="Product"><img width="70" [src]="item.product.image" alt=""></td>
+        <td data-label="Name">{{item.product.name}}</td>
+        <td data-label="Qty">
+          <button class="quantity-btn" (click)="decrementQuantity(item)">-</button>
+          {{item.quantity}}
+          <button class="quantity-btn" (click)="incrementQuantity(item)">+</button>
+        </td>
+        <td data-label="Price">{{item.product.price | currency}}</td>
+        <td data-label="Total">{{(item.quantity * item.product.price) | currency}}</td>
+        <td data-label="Action">
+          <button class="delete-btn" (click)="deleteMyFood(item.product.id)">
+            <i style="color: red;" class="fa-solid fa-trash"></i>
+          </button>
+        </td>
+      </tr>
+    </tbody>
+    <tfoot>
+      <tr>
+        <td colspan="4" style="text-align: right;"><strong>Total:</strong></td>
+        <td colspan="2">{{ getTotalPrice() | currency }}</td>
+      </tr>
+      <div class="ckkk">
+        <button class="checkout">
+        Proceed to checkout
+      </button>
+      </div>
+    </tfoot>
+  </table>
+  

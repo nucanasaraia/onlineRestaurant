@@ -1,0 +1,127 @@
+@import url('https://fonts.googleapis.com/css2?family=Poetsen+One&display=swap');
+  .navbar-brand{
+    background-color: rgb(0, 191, 255);
+    border-radius: 5px;
+    color: black;
+    padding: 2px 5px;
+    font-family: "Poetsen One", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+  }
+
+  .navbar-nav {
+    display: flex;
+    list-style: none;
+    padding: 0;
+  }
+  
+  .nav-item {
+    position: relative;
+    margin: 0 15px;
+  }
+  
+  .nav-link {
+    color: #000000;
+    text-decoration: none;
+    padding: 10px 15px;
+    display: flex;
+    align-items: center;
+    transition: color 0.3s ease, background-color 0.3s ease;
+    position: relative;
+  }
+  
+  .nav-link i {
+    margin-right: 8px;
+    transition: transform 0.3s ease;
+  }
+  
+  .nav-link.active, .nav-link:hover {
+    color: #fff;
+    background-color: rgb(255, 162, 0);
+    border-radius: 4px;
+  }
+  
+  .nav-link.active i, .nav-link:hover i {
+    transform: rotate(20deg);
+  }
+  
+  .nav-link::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    transform: scaleX(0);
+    height: 3px;
+    bottom: 0;
+    left: 0;
+    background-color: rgb(255, 162, 0);
+    transform-origin: bottom right;
+    transition: transform 0.25s ease-out;
+  }
+  
+  .nav-link:hover::after {
+    transform: scaleX(1);
+    transform-origin: bottom left;
+  }
+  
+  @media (max-width: 992px) {
+    .navbar-nav {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .nav-item {
+        margin: 5px 0;
+    }
+
+    .nav-link {
+        width: 100%;
+        padding: 10px;
+        border-radius: 4px;
+        background-color: #f8f9fa;
+    }
+
+    .nav-link.active, .nav-link:hover {
+        background-color: rgb(255, 162, 0);
+    }
+}
+
+@media (max-width: 768px) {
+    .navbar-brand {
+        flex-grow: 1;
+        text-align: center;
+    }
+
+    .navbar-toggler {
+        order: 1;
+    }
+
+    .navbar-collapse {
+        order: 3;
+        width: 100%;
+    }
+
+    .navbar-nav {
+        width: 100%;
+        align-items: center;
+    }
+
+    .nav-item {
+        width: 100%;
+        text-align: center;
+    }
+
+    .nav-link {
+        justify-content: center;
+    }
+}
+
+@media (max-width: 576px) {
+    .nav-link {
+        padding: 8px 10px;
+        font-size: 0.9rem;
+    }
+
+    .nav-link i {
+        margin-right: 5px;
+    }
+}

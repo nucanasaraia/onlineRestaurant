@@ -1,0 +1,90 @@
+<section>
+  <div class="image-container">
+    <img src="https://casasensei.com/wp-content/uploads/2019/07/Asian-Food-1.jpg" alt="Asian Food">
+    <div class="text-overlay">Fast And Efficient, Online Ordering You Must Try.</div>
+  </div>
+</section>
+
+<section><div class="cate">
+  Categories
+</div></section>
+
+<nav>
+    <ul>
+        <li [ngClass]="nomeri == 0 ? 'actived' : '' " (click)="showAllFoods()">All</li>
+        <li [ngClass]="nomeri === item.id ? 'actived' : ''" (click)="getID(item.id)" *ngFor="let item of categories">{{item.name}}</li>
+    </ul>
+</nav>
+
+<ul>
+  <li (click)="showByCategory(item.id)" *ngFor="let item of categoryList">{{item.name}}</li>
+</ul>
+
+<main class="container mt-4">
+  <div class="card p-4">
+    <div class="card-header text-white">
+      <h4>Filter Options</h4>
+    </div>
+    <div class="card-body">
+      <div class="row mb-3">
+        <div class="col-md-4">
+          <label for="spicyRange">Spicy</label>
+          <div class="d-flex align-items-center">
+            <input id="spicyRange" type="range" min="0" max="4" step="1" [(ngModel)]="sicxare" class="form-range me-2">
+            <span>{{ sicxare }}</span>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <label for="noNuts" class="form-check-label">Nuts</label>
+          <input id="noNuts" type="checkbox" [(ngModel)]="txili" class="form-check-input">
+        </div>
+        <div class="col-md-4">
+          <label for="vegetarian" class="form-check-label">Vegetarian</label>
+          <input id="vegetarian" type="checkbox" [(ngModel)]="vegetarianuli" class="form-check-input">
+        </div>
+      </div>
+      <div class="d-flex justify-content-between">
+        <button (click)="filterFoods()" class="btn btn-primary">Filter</button>
+        <button (click)="resetFood()" class="btn btn-secondary">Reset</button>
+      </div>
+    </div>
+  </div>
+</main>
+
+
+
+
+<section *ngIf="foodList.length > 0">
+  <div *ngFor="let food of foodList" class="card custom-card" style="width: 18rem;">
+      <img [src]="food.image" class="card-img-top" alt="...">
+      <div class="card-body">
+        <h5 class="card-title">{{food.name}}</h5>
+        <p>Price: {{food.price | currency}}</p>
+        <h6>
+          Spiciness: {{food.spiciness}}
+        </h6>
+        <div  class="d-flex justify-content-between">
+          <h6>
+          Nuts: 
+          <i [ngStyle]="{'color': food.nuts ? 'green' : 'red'}" 
+             [ngClass]="food.nuts ? 'fa-regular fa-circle-check' : 'fa-regular fa-circle-xmark'">
+          </i>
+        </h6>
+        <h6>
+          Vegetarian: 
+          <i [ngStyle]="{'color': food.vegeterian ? 'green' : 'red'}" 
+             [ngClass]="food.vegeterian ? 'fa-regular fa-circle-check' : 'fa-regular fa-circle-xmark'">
+          </i>
+        </h6>
+        </div>
+        
+        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+        <a (click)="addToCart(food.id, food.price)" class="btn btn-primary">Add to cart</a>
+      </div>
+  </div>
+</section>
+
+
+<div class="center-container" *ngIf="foodList.length == 0">
+  <img src="https://www.kunena.org/docs/user/pages/11.troubleshooting/01.page-not-found/error-404.png" alt="">
+</div>
